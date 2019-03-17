@@ -1,5 +1,5 @@
 bu.Preprocess <-
-function(input, ...){
+function(input, max=100, min=0,  ...){
 T <- input
 T <- as.matrix(T)
 T[T < 0 | T > 100] <- NA
@@ -15,7 +15,8 @@ cutoff <- nstimuli - 7
 keep <- which(rowSums(!is.na(T))>=cutoff)
 #presidential.vote <- presidential.vote[keep]
 T <- T[keep,]
-T <- (100-T)/50
+T <- (max - T)/(diff(c(min, max))*.5)
+# T <- (100-T)/50
 #T <- (100-T)/50 + 0.02
 #
 nrowX <- nrow(T)
@@ -68,5 +69,5 @@ yrotate <- rep(0,(NS*(nrowX+ncolX)))
 #
 zz <- SMACOF.result$conf.col
 xx <- SMACOF.result$conf.row
-invisible(list(zmetric=zmetric, xmetric=xmetric, rmatrix=rmatrix, yrotate=yrotate, X=X, CONSTRAINTS=CONSTRAINTS, data=T, smacof.result=SMACOF.result))
+invisible(list(zmetric=zmetric, xmetric=xmetric, rmatrix=rmatrix, yrotate=yrotate, X=X, CONSTRAINTS=CONSTRAINTS, keep = keep, data=T, smacof.result=SMACOF.result))
 }

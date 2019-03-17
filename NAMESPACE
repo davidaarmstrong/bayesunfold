@@ -1,0 +1,7 @@
+useDynLib(bayesunfold)
+exportPattern("^[[:alpha:]]+")
+import(coda)
+importFrom("MCMCpack", "procrustes")
+importFrom("smacof", "smacofRect")
+importFrom("stats", "sd")
+

@@ -40,6 +40,6 @@ function(obj,nburn=1000, nslice=2000, NS=2,UNFOLD=1, NMISSING=7, rotmat=NULL){
     individuals[[i]] <- samples[,(seq((ncol(obj$data)*NS+i), NDIM, by = NS))]
     individuals[[i]] <- as.mcmc(individuals[[i]])
   }
-  out <- list(stimuli = stimuli, individuals=individuals, keep=keep)
+  out <- list(stimuli = stimuli, individuals=individuals, keep=obj$keep)
   return(out)
 }
